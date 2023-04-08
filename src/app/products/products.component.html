@@ -1,0 +1,72 @@
+<div class="Product">
+  <h1>{{StoreName}}</h1>
+  <img class="StoreLogo" [src]="StoreLogo" alt="Store Logo">
+   <h3>We offer an explicit discount of: {{ Discount }}</h3>
+   <!-- <h3 *ngIf="Discount !== DiscountOffers['No Discount']">{{ Discount }}</h3> -->
+
+   <!-- <h3 *ngIf="Discount !== DiscountOffers['NoDiscount']">We offer an explicit discount of: {{ Discount }}</h3> -->
+  <!-- <h3 *ngIf="Discount !== DiscountOffers['No Discount']">We offer an explicit discount of: {{ Discount }}</h3> -->
+  <!-- <h3 *ngIf="Discount !== DiscountOffers['No Discount']">We offer an explicit discount of: {{ Discount }}</h3> -->
+  <h1>{{ StoreName | uppercase }}</h1>
+  <!-- <h2>Discount: {{ Discount | percent }}</h2> -->
+</div>
+<select style="margin: 10px 100px;" [value]="CategoryList">
+  <option *ngFor="let categor of CategoryList" value="categor.ID">{{categor.Name}}</option>
+</select>
+
+<br>
+<input style="margin: 10px 100px;" type="text" [(ngModel)]="ClientName">
+<br>
+
+
+<div style="margin: 10px 100px;">
+<input type="text" [(ngModel)]="ClientName">
+<button (click)="buy()">Buy</button>
+
+<table *ngIf="!IsPurchased">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of ProductList">
+        <td>{{ product.ID }}</td>
+        <td>{{ product.Name }}</td>
+        <td>{{ product.Quantity }}</td>
+        <td>{{ product.Price | currency }}</td>
+        <td><img id="ImgProduct" [src]="product.Img" width="50" height="50"></td>
+      </tr>
+    </tbody>
+  </table>
+</table>
+
+<div *ngIf="IsPurchased">
+  Thanks for purchasing from our Store {{ ClientName }}!
+</div>
+
+</div>
+
+<div style="margin: 10px 100px;">
+  <button style="margin-right: 10px;" (click)="showProductsWithDiscound()">Products with discount</button>
+  <button (click)="showProductsWithOutDiscound()">Products without discount</button>
+</div>
+
+
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,91 @@
+<!-- Template Dirven Forms  -->
+<h1>Login</h1>
+<!-- <div class="container">
+  <form #loginForm="ngForm" novalidate (ngSubmit)="submitData()">
+    {{ loginModel | json }}
+    <br />
+    <br />
+    <div class="from-group">
+      <label>Email :</label>
+      <input
+        type="email"
+        required
+        name="email"
+        [(ngModel)]="loginModel.email"
+        #email="ngModel"
+        class="form-control"
+      />
+      <div *ngIf="email.errors && email.touched">
+        <small class="text-danger" *ngIf="email.errors['required']"
+          >email is required</small
+        >
+        <small class="text-danger" *ngIf="email.errors['pattern']"
+          >Email must be in the format user@domain.com</small
+        >
+      </div>
+    </div>
+    <br />
+    <br />
+    <div class="from-group">
+      <label>Password :</label>
+      <input
+        required
+        type="password"
+        name="password"
+        [(ngModel)]="loginModel.password"
+        #password="ngModel"
+        class="form-control"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+      />
+      <div *ngIf="password.errors && password.touched">
+        <small class="text-danger" *ngIf="password.errors['required']"
+          >password is required</small
+        >
+        <small class="text-danger" *ngIf="password.errors['pattern']"
+          >password must be in the format pattern</small
+        >
+      </div>
+    </div>
+    <br />
+    <br />
+    <button
+      required
+      type="submit"
+      [disabled]="!loginForm.valid"
+      class="btn btn-primary"
+    >
+      Login
+    </button>
+  </form>
+</div>
+<br />
+<br /> -->
+<!-- Reactive Forms -->
+<h1>Login</h1>
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="submitData()">
+    {{loginForm.value | json}}
+    <br><br>
+    <div class="from-group">
+      <label>Email :</label>
+      <input type="email" name="email" formControlName="email" class="form-control">
+      <div *ngIf="email?.errors && email?.touched">
+        <small class="text-danger" *ngIf="email?.errors?.['required']">email is required</small>
+        <small class="text-danger" *ngIf="email?.errors?.['pattern']">Email must be in the format user@domain.com</small>
+      </div>
+    </div>
+    <br><br>
+    <div class="from-group">
+      <label>Password :</label>
+      <input type="password" name="password" formControlName="password" class="form-control">
+      <div *ngIf="password?.errors && password?.touched">
+        <small class="text-danger" *ngIf="password?.errors?.['required']">password is required</small>
+        <small class="text-danger" *ngIf="password?.errors?.['pattern']">password must be in the format pattern</small>
+      </div>
+    </div>
+    <br><br>
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+  </form>
+</div>
+<br><br>
+

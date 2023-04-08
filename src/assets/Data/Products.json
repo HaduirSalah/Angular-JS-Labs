@@ -1,0 +1,17 @@
+[
+  {
+    "ID": 1,
+    "Name": "Samsung Galaxy A53 Dual Sim, 8GB RAM, 128GB Storage, 5G, Blue",
+    "Quantity": 10,
+    "Price": 100,
+    "Img": "assets/1.jpg"
+  },
+  {
+    "ID": 2,
+    "Name": "New Apple iPhone 13 with FaceTime (128GB) - Starlight",
+    "Quantity": 5,
+    "Price": 50,
+    "Img": "assets/2.jpg"
+  }
+]
+

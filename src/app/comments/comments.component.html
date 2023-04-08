@@ -1,0 +1,13 @@
+<!-- <p>comments works!</p> -->
+
+<div *ngIf="comments" class="Comment">
+  <h1>comments</h1>
+  <div *ngFor="let comment of comments">
+    <p>Name : {{ comment.name }}</p>
+    <p>Email: {{ comment.email }}</p>
+    <p>Comment: {{ comment.body }}</p>
+    <hr>
+  </div>
+</div>
+
+

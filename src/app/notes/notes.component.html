@@ -1,0 +1,65 @@
+<h1>notes</h1>
+<div class="container">
+  <form [formGroup]="notesForm" (ngsubmit)="submitData()">
+    {{notesForm.value|json}}
+    <br>
+    <br>
+    <div class="form-group">
+       <label for="name">Name : </label>
+       <input type="text" id="name" formControlName="name" class="form-control">
+       <div *ngIf="name?.invalid && (name?.dirty||name?.touched)">
+          <small *ngIf="name?.errors?.['required']" class="text-danger">Name is required.</small>
+          <small *ngIf="name?.errors?.['forbiddenName']" class="text-danger">Name cannot be 'admin' or 'administrator'.</small>
+       </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="form-group">
+       <label for="selectedProduct">Product : </label>
+       <select id="selectedProduct" formControlName="selectedProduct" class="form-control"  *ngIf="Products">
+        <option value="">-- Select a product --</option>
+         <option *ngFor="let product of Products" [value]="product.ID">{{product.Name}}</option>
+       </select>
+    </div>
+    <br>
+    <br>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="hasDiscount" (change)="onHasDiscountChange()">
+      <label class="form-check-label">Does this product containd discount</label>
+    </div>
+
+    <div class="form-group" *ngIf="notesForm.get('hasDiscount')?.value">
+      <label for="discount-input">Discount (in %):</label>
+      <input type="number" id="discount-input" formControlName="discount" class="form-control" required>
+      <div *ngIf="notesForm.controls.discount.invalid && (notesForm.controls.discount.dirty || notesForm.controls.discount.touched)">
+        <small class="text-danger">
+          Discount is required.
+        </small>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="form-group">
+      <label>Comment : </label>
+      <input type="text"
+             class="form-control"
+             formControlName="comment"
+             >
+       <small class="text-danger" *ngIf="comment?.touched &&comment?.invalid">comment is required</small>
+  </div>
+  <br>
+  <br>
+    <button (click)="addAlternativeComment()" class="btn btn-success float-right">Add New Comment</button>
+    <br>
+        <div formArrayName="aleternativeEmails"
+             *ngFor="let comment of aleternativeComments.controls; let i=index">
+             <label>Alternative Comment : {{i+1}}</label>
+             <input type="text" class="form-control" [formControlName]="i">
+             <br>
+             <button (click)="deleteComment(i)" class="btn btn-danger float-right">-</button>
+        </div>
+  </form>
+</div>

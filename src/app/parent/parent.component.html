@@ -1,0 +1,18 @@
+<!-- <p>parent works!</p> -->
+<div class="Parent">
+      <div *ngFor="let product of products">
+        <div class="card" style="width:400px">
+          <img id="ImgProduct" [src]="product.Img" height="250px" width="200px">
+          <div class="card-body">
+
+            <p class="card-text">{{ product.Name }}</p>
+            <h4 class="card-title">{{ product.ID }}</h4>
+            <h6 class="card-title">{{ product.Quantity }}</h6>
+            <h6 class="card-title">{{ product.Price | currency  }}</h6>
+          </div>
+        </div>
+    </div>
+
+</div>
+
+<app-child class="Parent" (childEvent)="handleChildEvent($event)"></app-child>
